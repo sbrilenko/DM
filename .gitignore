@@ -1,0 +1,8 @@
+*.log
+composer.phar
+composer.lock
+*db.php
+nbproject/
+/.idea/
+assets/
+
