@@ -4,5 +4,5 @@ composer.lock
 *db.php
 nbproject/
 /.idea/
-assets/
+/assets/
 

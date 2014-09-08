@@ -16,9 +16,37 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+        'application.modules.user.models.*',
 	),
 
 	'modules'=>array(
+        'user' => array(
+            'debug' => false,
+            'userTable' => 'user',
+            'translationTable' => 'translation',
+        ),
+        'usergroup' => array(
+            'usergroupTable' => 'usergroup',
+            'usergroupMessageTable' => 'user_group_message',
+        ),
+        'friendship' => array(
+            'friendshipTable' => 'friendship',
+        ),
+        'profile' => array(
+            'privacySettingTable' => 'privacysetting',
+            'profileTable' => 'profile',
+            'profileCommentTable' => 'profile_comment',
+            'profileVisitTable' => 'profile_visit',
+        ),
+        'role' => array(
+            'roleTable' => 'role',
+            'userRoleTable' => 'user_role',
+            'actionTable' => 'action',
+            'permissionTable' => 'permission',
+        ),
+        'message' => array(
+            'messageTable' => 'message',
+        ),
 		// uncomment the following to enable the Gii tool
 		/*
 		'gii'=>array(
@@ -32,10 +60,12 @@ return array(
 
 	// application components
 	'components'=>array(
-
+        'cache' => array('class' => 'system.caching.CDummyCache'),
 		'user'=>array(
 			// enable cookie-based authentication
-			'allowAutoLogin'=>true,
+            'class' => 'application.modules.user.components.YumWebUser',
+            'allowAutoLogin'=>true,
+            'loginUrl' => array('//user/user/login'),
 		),
 
 		// uncomment the following to enable URLs in path-format
