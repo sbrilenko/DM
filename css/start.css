@@ -1,0 +1,210 @@
+body
+{
+	margin: 0;
+	padding: 0;
+	color: #172d65;
+	font: 16px/22px Arial,Helvetica,sans-serif;
+	background: #EFEFEF;
+    margin:0 auto;
+    background: url('../img/site-back.jpg') repeat;
+}
+.start-content
+{
+    margin: 0 auto 138px auto;
+    width:720px;
+    position: relative;
+}
+.start-content.center
+{
+    margin: 0 auto;
+    padding: 20px 15px;
+    width: 690px;
+}
+.start-logo
+{
+    background: url('../img/start-logo.png') no-repeat;
+    height:212px;
+    width:700px;
+    margin: 80px 0 57px 0;
+}
+.start-license
+{
+    background: #e1e9f1;
+    width:100%;
+}
+.pod
+{
+    font: 16px/22px Arial,Helvetica,sans-serif;
+    font-style: italic;
+    font-weight: bold;
+    text-align: right;
+}
+p {
+    margin: 0 0 20px;
+}
+.start-rize
+{
+    background: url('../img/start-rize.png') no-repeat;
+    position: absolute;
+    width:1323px;
+    height:1181px;
+    top: -471px;
+    left: -299px;
+    z-index: -1;
+}
+.start-footer-dec
+{
+    background: url('../img/start-footer-dec.png');
+    width:720px;
+    height:1px;
+    margin: 8px auto;
+}
+.start-footer
+{
+    text-align: center;
+    margin:54px 0 0 0 ;
+}
+.start-footer li,.start-footer li a,.start-footer li a:visited,.start-footer li a:hover
+{
+    font-family: Verdana;
+    font-size: 14px;
+    line-height: 20px;
+    color:#fff;
+    text-decoration: none;
+    list-style:none;
+    display: inline;
+}
+.start-footer li.middle
+{
+    margin: 0 35px;
+}
+.buttons
+{
+    margin: 0 auto;
+    width: 585px;
+}
+.start-button
+{
+    float: left;
+    background: url('../img/start-button.png') no-repeat;
+    width:283px;
+    font-family: Verdana;
+    font-size: 22px;
+    line-height: 22px;
+    color:#fff;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 18px 0px;
+    cursor:pointer;
+}
+.start-button.margin-left
+{
+    margin-left: 14px;
+}
+#registr,#sign-in
+{
+    display: none;
+    position: fixed;
+    top:50%;
+    left:50%;
+    width: 632px;
+    margin-left: -316px;
+    padding:21px 37px;
+    background: #102250;
+    z-index: 99999;
+}
+#registr.visible,#sign-in.visible
+{
+    display: block;
+}
+#registr .title,#sign-in .title
+{
+    font-family: Verdana;
+    font-size: 24px;
+    line-height: 27px;
+    color:#d3c140;
+    text-align: center;
+}
+.left{
+ float:left;
+}
+.right{
+    float:right;
+}
+.clear
+{
+    cler:both;
+}
+.register-form
+{
+    width:100%;
+}
+.start-form-left
+{
+    width:28%;
+}
+.start-form-right
+{
+    width:44%;
+}
+.start-form-image-back
+{
+    background: url("../img/start-form-image-back.png") no-repeat;
+    width:299px;
+    height:168px;
+    position: absolute;
+    z-index: -1;
+    right: 37px;
+}
+.before-reg-submit-button,.before-sign-in-submit-button
+{
+    width:153px;
+    margin: 0 auto;
+}
+.reg-form-submit,.sign-in-form-submit
+{
+    background: url("../img/reg-form-submit.png") no-repeat;
+    width:153px;
+    height:28px;
+    font-family: Verdana;
+    font-size:14px;
+    line-height: 20px;
+    color:#fff;
+    text-align: center;
+    border:0;
+}
+.sign-in-form-submit
+{
+    background: url("../img/sign-in-form-submit.png") no-repeat;
+}
+.sign-in-forgot-pass
+{
+    font-family: Verdana;
+    font-size:14px;
+    line-height: 20px;
+    color:#e1e9f1;
+}
+.start-close-button
+{
+    background: url("../img/start-close-button.png") no-repeat;
+    width:12px;
+    height:13px;
+    position: absolute;
+    cursor: pointer;
+    right: 13px;
+    top: 12px;
+}
+.back{
+    background: #000;
+    opacity:0.53;
+    width:100%;
+    height:100%;
+    position: fixed;
+    z-index:1;
+    display: none;
+    top: 0;
+}
+.back.visible
+{
+    display: block;
+}

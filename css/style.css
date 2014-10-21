@@ -1,0 +1,78 @@
+body
+{
+	margin: 0;
+	padding: 0;
+	color: #555;
+	font: normal 10pt Arial,Helvetica,sans-serif;
+	background: #EFEFEF;
+    width:1000px;
+    margin:0 auto;
+    background: url('../img/site-back.jpg') repeat;
+}
+
+#header
+{
+	margin: 0;
+	padding: 10px;
+}
+#header #logo
+{
+    float:left;
+    background: url('../img/logo.png') no-repeat;
+    width:273px;
+    height:83px;
+}
+#header .rise{
+    background: url('../img/rise.png') no-repeat;
+    position: absolute;
+    width: 1323px;
+    height:1167px;
+    margin-left: -512px;
+    margin-top: -541px;
+    z-index: -1;
+}
+#header #contacts
+{
+    float:right;
+    font-family: Verdana;
+    font-size:16px;
+    line-height: 20px;
+    color:#fff;
+    text-align: right;
+}
+#header .letter
+{
+    background: url('../img/header-letter.png') no-repeat;
+    padding-left:44px;
+    float: right;
+}
+#content
+{
+    padding: 20px;
+}
+
+#sidebar
+{
+    padding:0 11px 12px 6px;
+}
+
+#footer
+{
+	padding: 10px;
+	margin: 10px 20px;
+	font-size: 0.8em;
+	text-align: center;
+	border-top: 1px solid #C9E0ED;
+}
+.profile-name
+{
+    font-family: Tahoma;
+    font-size:18px;
+    line-height: 22px;
+    color:#e1e9f1;
+    padding-left:17px;
+    padding-top:9px;
+    padding-bottom:9px;
+    background-color:#136286;
+    border-radius: 5px 5px 0 0;
+}

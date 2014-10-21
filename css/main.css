@@ -7,19 +7,18 @@ body
 	background: #EFEFEF;
 }
 
-#page
-{
-	margin-top: 5px;
-	margin-bottom: 5px;
-	background: white;
-	border: 1px solid #C9E0ED;
-}
+/*#page*/
+/*{*/
+	/*margin-top: 5px;*/
+	/*margin-bottom: 5px;*/
+	/*background: white;*/
+	/*border: 1px solid #C9E0ED;*/
+/*}*/
 
 #header
 {
 	margin: 0;
 	padding: 0;
-	border-top: 3px solid #C9E0ED;
 }
 
 #content
@@ -41,11 +40,6 @@ body
 	border-top: 1px solid #C9E0ED;
 }
 
-#logo
-{
-	padding: 10px 20px;
-	font-size: 200%;
-}
 
 #mainmenu
 {
