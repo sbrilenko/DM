@@ -46,10 +46,10 @@ p {
 {
     background: url('../img/start-rize.png') no-repeat;
     position: absolute;
-    width:1323px;
+    width:1119px;
     height:1181px;
     top: -471px;
-    left: -299px;
+    left: -190px;
     z-index: -1;
 }
 .start-footer-dec
@@ -108,10 +108,15 @@ p {
     top:50%;
     left:50%;
     width: 632px;
-    margin-left: -316px;
+    margin-left: -353px;
+    margin-top: -163px;
     padding:21px 37px;
     background: #102250;
     z-index: 99999;
+}
+#sign-in.top
+{
+    margin-top:-121px;
 }
 #registr.visible,#sign-in.visible
 {
@@ -138,6 +143,7 @@ p {
 .register-form
 {
     width:100%;
+    margin-top:18px;
 }
 .start-form-left
 {
@@ -155,11 +161,20 @@ p {
     position: absolute;
     z-index: -1;
     right: 37px;
+    top:86px;
+}
+.start-form-image-back.top
+{
+    top: 38px;
 }
 .before-reg-submit-button,.before-sign-in-submit-button
 {
     width:153px;
     margin: 0 auto;
+}
+.before-sign-in-submit-button
+{
+    margin: 23px auto 0 auto;
 }
 .reg-form-submit,.sign-in-form-submit
 {
@@ -172,17 +187,27 @@ p {
     color:#fff;
     text-align: center;
     border:0;
+    cursor: pointer;
 }
 .sign-in-form-submit
 {
     background: url("../img/sign-in-form-submit.png") no-repeat;
 }
-.sign-in-forgot-pass
+.sign-in-forgot-pass,.sign-in-forgot-pass a
 {
     font-family: Verdana;
     font-size:14px;
     line-height: 20px;
     color:#e1e9f1;
+}
+.sign-in-forgot-pass a,.sign-in-forgot-pass:visited
+{
+    color:#fff;
+    text-decoration: underline;
+}
+.sign-in-forgot-pass a:hover
+{
+    text-decoration: none;
 }
 .start-close-button
 {
@@ -207,4 +232,42 @@ p {
 .back.visible
 {
     display: block;
+}
+label
+{
+    font-family: Verdana;
+    font-size:18px;
+    line-height: 24px;
+    color:#fff;
+}
+label.checkbox,label.checkbox a,label.checkbox a:visited
+{
+    font-size:14px;
+    line-height: 20px;
+    color:#fff;
+    padding-left: 10px;
+}
+label.checkbox a,label.checkbox a:visited
+{
+    text-decoration: underline;
+    padding-left: 0;
+}
+label.checkbox a:hover
+{
+    text-decoration: none;
+}
+input[type=text],input[type=password]
+{
+    width: 100%;
+    padding: 7px 5px;
+    border: 0;
+    border-radius: 3px;
+}
+input[type=checkbox]
+{
+    margin: 5px;
+}
+.reg-error,.signin-error
+{
+    color:red;
 }

@@ -87,25 +87,52 @@ class SiteController extends Controller
 	 */
 	public function actionLogin()
 	{
-		$model=new LoginForm;
+        if(Yii::app()->request->isPostRequest)
+        {
+            $model=new Users;
 
-		// if it is ajax validation request
-		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
+            if(isset($_POST['Users']))
+            {
+                $model->attributes=$_POST['Users'];
+                if(empty($model->username) && empty($model->password))
+                {
+                    echo json_encode(array("error"=>true,"message"=>array("username"=>"Username cannot be empty",'password'=>"Password cannot be empty")));
+                    exit();
+                }
+                elseif(empty($model->username))
+                {
+                    echo json_encode(array("error"=>true,"message"=>array("username"=>"Username cannot be empty")));
+                    exit();
+                }
+                elseif(empty($model->password))
+                {
+                    echo json_encode(array("error"=>true,"message"=>array('password'=>"Password cannot be empty")));
+                    exit();
+                }
 
-		// collect user input data
-		if(isset($_POST['LoginForm']))
-		{
-			$model->attributes=$_POST['LoginForm'];
-			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
-		}
-		// display the login form
-		$this->render('login',array('model'=>$model));
+                if(!empty($model->username) && !empty($model->password))
+                {
+                    echo json_encode(array("error"=>true,"message"=>print_r($model->login(),true)));
+                    exit();
+                    if($model->login())
+                    {
+                        echo json_encode(array("error"=>false,"message"=>Yii::app()->user->id));
+                        exit();
+                    }
+                    else
+                    {
+                        echo json_encode(array("error"=>true,"message"=>"Wrong Username or Pass"));
+                        exit();
+                    }
+                }
+            }
+            else
+            {
+                echo json_encode(array("error"=>true,"message"=>"Nothing to send"));
+                exit();
+            }
+        }
+        else $this->redirect("/");
 	}
 
 	/**

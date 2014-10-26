@@ -34,18 +34,27 @@ return array(
 	// application components
 	'components'=>array(
         'cache' => array('class' => 'system.caching.CDummyCache'),
-
+        'user'=>array(
+            // enable cookie-based authentication
+            'allowAutoLogin'=>true,
+        ),
 		// uncomment the following to enable URLs in path-format
-		/*
+        'request'=>array(
+            'enableCsrfValidation'=>true,
+            'enableCookieValidation'=>true,
+        ),
 		'urlManager'=>array(
+            'showScriptName'=>false,
 			'urlFormat'=>'path',
 			'rules'=>array(
-				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+                '<controller:(foo|bar)>/<action>'                                 => 'module/<controller>/<action>',
+                '/install/default/<action:\w+>'                                   => '/install/default/<action>',
+                '/gii/<controller:\w+>/<action:\w+>'                              => 'gii/<controller>/<action>',
+                '/<action:\w+>'                                                   => 'site/<action>',
+                '<controller:\w+>/<action:\w+>'                                   => '<controller>/<action>',
 			),
 		),
-		*/
+
 
 		// database settings are configured in database.php
 		'db'=>require(dirname(__FILE__).'/database.php'),

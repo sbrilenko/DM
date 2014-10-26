@@ -56,7 +56,7 @@
     <div class="title">Registration</div>
     <div class="register-form">
         <?php $form=$this->beginWidget('CActiveForm', array(
-            'id'=>'contact-form',
+            'id'=>'register-form',
             'enableClientValidation'=>true,
             'clientOptions'=>array(
                 'validateOnSubmit'=>true,
@@ -68,6 +68,7 @@
         </div>
         <div class="left start-form-right">
             <?php echo $form->textField($model,'username'); ?>
+            <div class="reg-error reg-username">&nbsp;</div>
         </div>
         <div class="clear"></div>
         <div class="left start-form-left">
@@ -75,28 +76,36 @@
         </div>
         <div class="left start-form-right">
             <?php echo $form->textField($model,'email'); ?>
+            <div class="reg-error reg-email">&nbsp;</div>
         </div>
         <div class="clear"></div>
         <div class="left start-form-left">
             <?php echo $form->labelEx($model,'password'); ?>
         </div>
         <div class="left start-form-right">
-            <?php echo $form->textField($model,'password'); ?>
+            <?php echo $form->passwordField($model,'password'); ?>
+            <div class="reg-error reg-password">&nbsp;</div>
         </div>
         <div class="clear"></div>
         <div class="left start-form-left">
             <?php echo $form->labelEx($model,'confirm_password'); ?>
         </div>
         <div class="left start-form-right">
-            <?php echo $form->textField($model,'confirm_password'); ?>
+            <?php echo $form->passwordField($model,'confirm_password'); ?>
+            <div class="reg-error reg-confirm-password">&nbsp;</div>
         </div>
         <div class="clear"></div>
         <div class="left">
-            <?php echo Chtml::checkBox('agreement'); ?>
+            <?php echo $form->checkBox($model,'agreement',array("id"=>"agreement")); ?>
         </div>
         <div class="left">
-            <label for="agreement">I have read and fully understood the Make Marriage <a href="#">Terms and Conditions</a></label>
+            <label class="checkbox" for="agreement">I have read and fully understood the Make Marriage <a href="#">Terms and Conditions</a></label>
         </div>
+        <div class="clear"></div>
+        <div class="left start-form-left">&nbsp;</div>
+        <div class="left start-form-right">
+            <div class="reg-error reg-agreement">&nbsp;</div></div>
+
         <div class="clear"></div>
         <div class="before-reg-submit-button">
             <?php echo CHtml::submitButton("Registration",array("class"=>"reg-form-submit")); ?>
@@ -104,13 +113,13 @@
         <?php $this->endWidget(); ?>
     </div>
 </div>
-<div id="sign-in">
+<div id="sign-in" class="top">
     <div class="start-close-button"></div>
-    <div class="start-form-image-back"></div>
+    <div class="start-form-image-back top"></div>
     <div class="title">Sign in</div>
     <div class="register-form">
         <?php $form=$this->beginWidget('CActiveForm', array(
-            'id'=>'contact-form',
+            'id'=>'sign-in-form',
             'enableClientValidation'=>true,
             'clientOptions'=>array(
                 'validateOnSubmit'=>true,
@@ -122,13 +131,15 @@
         </div>
         <div class="left start-form-right">
             <?php echo $form->textField($model,'username'); ?>
+            <div class="signin-error signin-username">&nbsp;</div>
         </div>
         <div class="clear"></div>
         <div class="left start-form-left">
             <?php echo $form->labelEx($model,'password'); ?>
         </div>
         <div class="left start-form-right">
-            <?php echo $form->textField($model,'password'); ?>
+            <?php echo $form->passwordField($model,'password'); ?>
+            <div class="signin-error signin-password">&nbsp;</div>
         </div>
         <div class="clear"></div>
         <div class="left start-form-left">&nbsp;</div>
@@ -136,11 +147,109 @@
             <a href="#">Forgot password ?</a>
         </div>
         <div class="clear"></div>
-        <div class="before-reg-submit-button">
+        <div class="before-sign-in-submit-button">
             <?php echo CHtml::submitButton("Sign in",array("class"=>"reg-form-submit")); ?>
         </div>
         <?php $this->endWidget(); ?>
     </div>
 
 </div>
+<script>
+    $(document).ready(function()
+    {
+        $(document).on('click','.start-close-button',function()
+        {
+            $(".reg-error,.sigin-error").html("&nbsp;")
+            $("#sign-in,#registr,.back").removeClass("visible")
+        })
+
+        $("#sign-in-form").on("submit",function()
+        {
+            $(".reg-error,.signin-error").html("&nbsp;")
+            var th=$(this);
+            var arr=th.serializeArray();
+            console.log(arr)
+            //add distributor
+            $.ajax({
+                url: "/login",
+                type: "POST",
+                data:arr,
+                success: function (data) {
+                    data=$.parseJSON(data);
+                    console.log(data)
+                    if(data.error)
+                    {
+                        if(data.message.username)
+                        {
+                            $('.signin-username').text(data.message.username)
+                            $('.signin-username').show();
+                        }
+                        if(data.message.password)
+                        {
+                            $('.signin-password').text(data.message.password)
+                            $('.signin-password').show();
+                        }
+                    }
+                    else
+                    {
+                        window.location.href="/";
+                    }
+                }
+            })
+            return false;
+        })
+        //registr submit
+        $("#register-form").on("submit",function()
+        {
+            $(".reg-error,.signin-error").html("&nbsp;")
+            var th=$(this);
+            var arr=th.serializeArray();
+            console.log(arr)
+            //add distributor
+            $.ajax({
+                url: "/users/create",
+                type: "POST",
+                data:arr,
+                success: function (data) {
+                    data=$.parseJSON(data);
+                    console.log(data)
+                    if(data.error)
+                    {
+                        if(data.message.confirm_password)
+                        {
+                            $('.reg-confirm-password').text(data.message.confirm_password);
+                            $('.reg-confirm-password').show();
+                        }
+                        if(data.message.username)
+                        {
+                            $('.reg-username').text(data.message.username)
+                            $('.reg-username').show();
+                        }
+                        if(data.message.email)
+                        {
+                            $('.reg-email').text(data.message.email)
+                            $('.reg-email').show();
+                        }
+                        if(data.message.password)
+                        {
+                            $('.reg-password').text(data.message.password)
+                            $('.reg-password').show();
+                        }
+                        if(data.message.agreement)
+                        {
+                            $('.reg-agreement').text(data.message.agreement)
+                            $('.reg-agreement').show();
+                        }
+                    }
+                    else
+                    {
+                        window.location.href="/";
+                    }
+                }
+            })
+            return false;
+        })
+    })
+
+</script>
 

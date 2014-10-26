@@ -33,7 +33,7 @@ class UsersController extends Controller
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
-				'users'=>array('@'),
+				'users'=>array('*'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
@@ -62,21 +62,41 @@ class UsersController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Users;
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Users']))
-		{
-			$model->attributes=$_POST['Users'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
-
-		$this->render('create',array(
-			'model'=>$model,
-		));
+        $model=new Users;
+        // Uncomment the following line if AJAX validation is needed
+        // $this->performAjaxValidation($model);
+        if(isset($_POST['Users']))
+        {
+            $model->attributes=$_POST['Users'];
+            $model->agreement=$_POST['Users']['agreement'];
+            $model->role=0;
+            $model->time_create=strtotime(date("Y-m-d H:i:s"));
+            $model->confirm_password=$_POST['Users']['confirm_password'];
+            if($model->save())
+            {
+                $user_login=new Users();
+                $user_login->email=$model->email;
+                $user_login->password=$_POST['Users']['password'];
+                if($user_login->login())
+                {
+                    echo json_encode(array("error"=>false,"message"=>"logined"));
+                    exit();
+                }
+                else
+                {
+                    echo json_encode(array("error"=>true,"message"=>"Saved but not authorization"));
+                    exit();
+                }
+            }
+            else
+            {
+                echo json_encode(array("error"=>true,"message"=>$model->getErrors()));
+                exit();
+            }
+        }
+        $this->render('create',array(
+            'model'=>$model,
+        ));
 	}
 
 	/**
