@@ -7,18 +7,23 @@
  */
 class UserIdentity extends CUserIdentity
 {
-    private $id;
+    public $id;
+    public function __construct($username,$password)
+    {
+        $this->username=$username;
+        $this->password=$password;
+    }
     public function authenticate()
     {
         $record=Users::model()->findByAttributes(array('username'=>$this->username));
         if($record===null)
             $this->errorCode=self::ERROR_USERNAME_INVALID;
-        else if($record->password!==crypt($this->password,$record->password))
+        elseif($record->password!==crypt($this->password,$record->time_create))
             $this->errorCode=self::ERROR_PASSWORD_INVALID;
         else
         {
             $this->id=$record->id;
-            $this->setState('title', $record->title);
+            $this->setState('id', $record->id);
             $this->errorCode=self::ERROR_NONE;
         }
         return !$this->errorCode;

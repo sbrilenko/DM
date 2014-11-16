@@ -99,12 +99,12 @@ class SiteController extends Controller
                     echo json_encode(array("error"=>true,"message"=>array("username"=>"Username cannot be empty",'password'=>"Password cannot be empty")));
                     exit();
                 }
-                elseif(empty($model->username))
+                elseif(empty($model->username) && !empty($model->password))
                 {
                     echo json_encode(array("error"=>true,"message"=>array("username"=>"Username cannot be empty")));
                     exit();
                 }
-                elseif(empty($model->password))
+                elseif(empty($model->password) && !empty($model->username))
                 {
                     echo json_encode(array("error"=>true,"message"=>array('password'=>"Password cannot be empty")));
                     exit();
@@ -112,8 +112,6 @@ class SiteController extends Controller
 
                 if(!empty($model->username) && !empty($model->password))
                 {
-                    echo json_encode(array("error"=>true,"message"=>print_r($model->login(),true)));
-                    exit();
                     if($model->login())
                     {
                         echo json_encode(array("error"=>false,"message"=>Yii::app()->user->id));

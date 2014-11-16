@@ -18,6 +18,7 @@
 class Users extends CActiveRecord
 {
     public $_identity;
+    public $error;
     public $id;
     public $confirm_password;
     public $agreement;
@@ -215,9 +216,9 @@ class Users extends CActiveRecord
     /*login*/
     public function login()
     {
-        if($this->_identity===null)
+        if(is_null($this->_identity))
         {
-            $this->_identity=new UserIdentity($this->usermname,$this->password);
+            $this->_identity=new UserIdentity($this->username,$this->password);
             $this->_identity->authenticate();
         }
         if($this->_identity->errorCode===UserIdentity::ERROR_NONE)
@@ -225,8 +226,7 @@ class Users extends CActiveRecord
             Yii::app()->user->login($this->_identity);
             return true;
         }
-        else
-            return false;
+        else return false;
     }
 
 }

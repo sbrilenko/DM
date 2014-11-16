@@ -189,6 +189,11 @@
                             $('.signin-password').text(data.message.password)
                             $('.signin-password').show();
                         }
+                        if(data.message!=="")
+                        {
+                            $(".signin-password").text(data.message)
+                        }
+
                     }
                     else
                     {
