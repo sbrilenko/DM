@@ -4,17 +4,31 @@
 $this->pageTitle=Yii::app()->name;
 ?>
 
-<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
+<div class="tab">
+    <ul class="tab-list">
+        <li <?php if(Yii::app()->controller->id=="site"&& Yii::app()->controller->action->id=="index") echo "class='active'"?> >Basic info</li>
+        <li class="left">Interests</li>
+    </ul>
+    <div class="clear"></div>
+    <div class="tab-list-border"></div>
+    <div class="edit-account-content">
+        <?php $profile=Profile::model()->findByAttributes(array("user_id"=>Yii::app()->user->id));?>
+        <?php
+        if(!$profile) {
+            $profile = new Profile();
+        }
+            $form = $this->beginWidget('CActiveForm', array(
+                'id' => 'edit-account-' . uniqid(),
+                'enableAjaxValidation' => true,
+                'enableClientValidation' => true,
+                'htmlOptions' => array()
+            ));
 
-<p>Congratulations! You have successfully created your Yii application.</p>
+        echo $form->textField($profile,'name');
+        echo $form->textField($profile,'surename');
 
-<p>You may change the content of this page by modifying the following two files:</p>
-<ul>
-	<li>View file: <code><?php echo __FILE__; ?></code></li>
-	<li>Layout file: <code><?php echo $this->getLayoutFile('main'); ?></code></li>
-</ul>
-
-<p>For more details on how to further develop this application, please read
-the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p>
+//        echo $form->dropDown($profile,'countries');
+        $this->endWidget();
+        ?>
+    </div>
+</div>

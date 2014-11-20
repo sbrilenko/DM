@@ -49,7 +49,7 @@ body
 }
 #content
 {
-    padding: 20px;
+    padding: 0;
 }
 
 #sidebar
@@ -141,4 +141,39 @@ background-color:#006699 ;
 .start-footer li.middle
 {
     margin: 0 35px;
+}
+.tab-list
+{
+
+}
+.tab-list li{
+    list-style: none;
+    padding: 3px 5px;
+    border: 1px solid #EEEEEE;
+    border-bottom: none;
+    float:left;
+    border-radius: 5px 5px 0 0;
+    font-family: Verdana;
+    font-size:  16px;
+    line-height: 18px;
+    background-color: #d0dde9;
+    color:#172d65;
+}
+.tab-list li.left
+{
+    margin-left: 10px;
+}
+.tab-list li.active
+{
+    background: #4cae8d;
+    color:#fff;
+    font-family: Verdana;
+    font-size:  16px;
+    line-height: 18px;
+}
+.tab-list-border
+{
+    border-top:1px solid #EEEEEE;
+    height: 1px;
+    width:100%;
 }

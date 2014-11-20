@@ -1,11 +1,9 @@
 <?php /* @var $this Controller */ ?>
 <?php $this->beginContent('//layouts/main'); ?>
-<div class="span-19">
-	<div id="content">
-		<?php echo $content; ?>
-	</div><!-- content -->
-</div>
-<div class="span-5 last">
+<table style="display: table">
+<tr>
+
+<td class="span-5 last" style="display: table-cell;padding: 0;">
 	<div id="sidebar">
         <div class="profile-name">Hi, <?php echo htmlspecialchars(Users::model()->findByPk(Yii::app()->user->id)->username);?>!</div>
         <?php if(Users::model()->findByPk(Yii::app()->user->id)->role==0) { ?>
@@ -58,5 +56,12 @@
 //		$this->endWidget();
 //	?>
 	</div><!-- sidebar -->
-</div>
+</td>
+    <td class="span-19" style="display: table-cell;vertical-align: top;background: #fff;border-radius: 3px;padding:0;">
+        <div id="content">
+            <?php echo $content; ?>
+        </div><!-- content -->
+    </td>
+    </tr>
+</table>
 <?php $this->endContent(); ?>

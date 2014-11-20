@@ -7,6 +7,7 @@
  * @property integer $id
  * @property integer $user_id
  * @property string $name
+ * @property string $surename
  * @property string $birth
  * @property integer $country
  * @property string $city
@@ -52,7 +53,7 @@ class Profile extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, name, smoking', 'required'),
+			array('user_id, name,surename, smoking', 'required'),
 			array('user_id, country, height, weight, hair, eyes, education, material_status, religion, reg_other_site, smoking, number_of_active_female_clients, number_of_cameras, number_of_computers, number_of_employees, agency_logo', 'numerical', 'integerOnly'=>true),
 			array('name, city, personal_mail, phone, age_preferences, perfect_match, passport_image, english_proficiency, director_name', 'length', 'max'=>512),
 			array('languages_spoken, address', 'length', 'max'=>1024),
@@ -83,6 +84,7 @@ class Profile extends CActiveRecord
 			'id' => 'ID',
 			'user_id' => 'User',
 			'name' => 'Name',
+            'surename'=>'Surename',
 			'birth' => 'Birth',
 			'country' => 'Country',
 			'city' => 'City',
@@ -133,6 +135,7 @@ class Profile extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('user_id',$this->user_id);
 		$criteria->compare('name',$this->name,true);
+        $criteria->compare('surename',$this->surename,true);
 		$criteria->compare('birth',$this->birth,true);
 		$criteria->compare('country',$this->country);
 		$criteria->compare('city',$this->city,true);

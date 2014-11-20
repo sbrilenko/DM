@@ -9,6 +9,7 @@
  * @property string $email
  * @property string $username
  * @property integer $role
+ *
  * @property string $confirm_url
  * @property integer $confirm_time
  * @property integer $confirm
